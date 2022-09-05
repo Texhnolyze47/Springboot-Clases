@@ -6,6 +6,9 @@ import org.jvnet.hk2.annotations.Service;
 import java.util.ArrayList;
 import java.util.List;
 
+/**
+ * Los servicios son la parte logica de nuestras aplicacion REST
+ */
 @Service
 public class BootcamperService {
 
