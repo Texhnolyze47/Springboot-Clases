@@ -1,6 +1,6 @@
 package com.example.springpatterns.patterns.behavioral.template;
 
-public class HhtmlAboutUs extends HtmlTemplate {
+public class HtmlAboutUs extends HtmlTemplate {
 
     @Override
     public String head() {
