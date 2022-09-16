@@ -49,3 +49,17 @@ query.setParameter("username", "Pepito");
 ## Más información
 
 https://owasp.org/www-project-top-ten/
+
+## Backend: Configuración Heroku
+
+1. Fichero system.properties especificando la version de java
+2. Subir proyecto a Github
+3. Conectar con Heroku para realizar despligue
+4. Añadir addon de PostegreSQL en Heroku
+5. Actualizar applicaction.properties
+
+## Frontend Vercel
+
+1. Subir proyecto Github
+2. Ajustar URL al backend
+3. Subir a Vercel
