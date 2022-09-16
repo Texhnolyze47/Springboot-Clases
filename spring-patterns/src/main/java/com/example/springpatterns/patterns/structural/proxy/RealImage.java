@@ -1,4 +1,4 @@
-package com.example.springpatterns.patterns.structural;
+package com.example.springpatterns.patterns.structural.proxy;
 
 public class RealImage implements Image{
 
