@@ -13,10 +13,7 @@ import org.springframework.security.core.userdetails.UsernameNotFoundException;
 import org.springframework.security.crypto.bcrypt.BCryptPasswordEncoder;
 import org.springframework.stereotype.Service;
 
-import java.util.ArrayList;
-import java.util.HashSet;
-import java.util.List;
-import java.util.Set;
+import java.util.*;
 
 @Service(value = "userService")
 public class UserServiceImpl implements UserDetailsService, UserService {
@@ -55,6 +52,11 @@ public class UserServiceImpl implements UserDetailsService, UserService {
     @Override
     public User findOne(String username) {
         return userRepository.findByUsername(username);
+    }
+
+    @Override
+    public User findById(Long id) {
+        throw new NoSuchElementException("No se ha encontrado el usuario solicitado");
     }
 
     @Override

@@ -7,6 +7,7 @@ import com.example.obspringsecurityjwtroles.entities.User;
 import com.example.obspringsecurityjwtroles.dto.UserDto;
 import com.example.obspringsecurityjwtroles.exception.EmailAlreadyExistsException;
 import com.example.obspringsecurityjwtroles.service.UserService;
+import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.security.access.prepost.PreAuthorize;
 import org.springframework.security.authentication.AuthenticationManager;
@@ -15,6 +16,8 @@ import org.springframework.security.core.Authentication;
 import org.springframework.security.core.AuthenticationException;
 import org.springframework.security.core.context.SecurityContextHolder;
 import org.springframework.web.bind.annotation.*;
+
+import java.util.NoSuchElementException;
 
 @CrossOrigin(origins = "*", maxAge = 3600)
 @RestController
@@ -71,6 +74,18 @@ public class UserController {
         return "Any User Can Read This";
     }
 
+    @PreAuthorize("hasRole('USER')")
+    @GetMapping("/{id}")
+    public User findOne(@PathVariable Long id){
+        return userService.findById(id);
+    }
+
+
+    @ExceptionHandler(NoSuchElementException.class)
+    @ResponseStatus(HttpStatus.NOT_FOUND)
+    public ResponseEntity<String> handleNoSuchElementException(NoSuchElementException exception){
+        return ResponseEntity.status(HttpStatus.NOT_FOUND).body(exception.getMessage());
+    }
 
 
 }
