@@ -77,7 +77,7 @@ public class UserController {
     @PreAuthorize("hasRole('USER')")
     @GetMapping("/{id}")
     public User findOne(@PathVariable Long id){
-        return userService.findById(id);
+        return userService.findById(null);
     }
 
 
@@ -87,5 +87,10 @@ public class UserController {
         return ResponseEntity.status(HttpStatus.NOT_FOUND).body(exception.getMessage());
     }
 
+    @ExceptionHandler(IllegalArgumentException.class)
+    @ResponseStatus(HttpStatus.BAD_REQUEST)
+    public ResponseEntity<String> handleNoSuchElementException(IllegalArgumentException exception){
+        return ResponseEntity.status(HttpStatus.BAD_REQUEST).body(exception.getMessage());
+    }
 
 }

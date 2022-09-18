@@ -56,6 +56,10 @@ public class UserServiceImpl implements UserDetailsService, UserService {
 
     @Override
     public User findById(Long id) {
+        if(id ==  null) {
+            throw new IllegalArgumentException("Valor id de usuario incorrecto, no es posible realizar la busqueda");
+        }
+
         throw new NoSuchElementException("No se ha encontrado el usuario solicitado");
     }
 
