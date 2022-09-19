@@ -2,6 +2,7 @@ package com.example.obspringsecurityjwtroles.controller;
 
 import com.example.obspringsecurityjwtroles.config.TokenProvider;
 import com.example.obspringsecurityjwtroles.dto.AuthToken;
+import com.example.obspringsecurityjwtroles.dto.ErrorResponse;
 import com.example.obspringsecurityjwtroles.dto.LoginUser;
 import com.example.obspringsecurityjwtroles.entities.User;
 import com.example.obspringsecurityjwtroles.dto.UserDto;
@@ -17,6 +18,8 @@ import org.springframework.security.core.AuthenticationException;
 import org.springframework.security.core.context.SecurityContextHolder;
 import org.springframework.web.bind.annotation.*;
 
+import java.time.LocalDate;
+import java.time.LocalDateTime;
 import java.util.NoSuchElementException;
 
 @CrossOrigin(origins = "*", maxAge = 3600)
@@ -77,20 +80,8 @@ public class UserController {
     @PreAuthorize("hasRole('USER')")
     @GetMapping("/{id}")
     public User findOne(@PathVariable Long id){
+        // Esto fuerza que salte una exception y ver como es gestionada por ExceptionController
         return userService.findById(null);
-    }
-
-
-    @ExceptionHandler(NoSuchElementException.class)
-    @ResponseStatus(HttpStatus.NOT_FOUND)
-    public ResponseEntity<String> handleNoSuchElementException(NoSuchElementException exception){
-        return ResponseEntity.status(HttpStatus.NOT_FOUND).body(exception.getMessage());
-    }
-
-    @ExceptionHandler(IllegalArgumentException.class)
-    @ResponseStatus(HttpStatus.BAD_REQUEST)
-    public ResponseEntity<String> handleNoSuchElementException(IllegalArgumentException exception){
-        return ResponseEntity.status(HttpStatus.BAD_REQUEST).body(exception.getMessage());
     }
 
 }
